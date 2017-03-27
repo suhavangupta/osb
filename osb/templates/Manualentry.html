@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+{% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Participant entry</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/scrolling-nav.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">SLOT BOOKING</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+                    <li><form class="form-horizontal" role="form" action =  "log_out" method = "post">
+                             {% csrf_token %}
+                            <input type = "hidden" name = "link" value = "log_out">
+                             <input type = "submit" value = "LOG OUT">
+
+                       </form></li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                        <form class="form-horizontal" role="form" action = "user_store" method = "post">
+                        {% csrf_token %}
+                            <br><br>
+                                <div class="form-group">
+                                <label for="luser1" class="col-sm-2 control-label">Name 1:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="name1" name = "name1" placeholder="Enter User Name">
+                                </div>
+                                <label for="luser1" class="col-sm-2 control-label">Name 2:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="name2" name = "name2" placeholder="Enter User Name">
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                <label for="lmail1" class="col-sm-2 control-label">Email1:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="email1" name = "email1" placeholder="Enter Email:">
+                                </div>
+
+                                <label for="lmail2" class="col-sm-2 control-label">Email2:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="mail2" name = "email2" placeholder="Enter Email:">
+                                </div>                                
+                                </div>
+
+
+                                <div class="form-group">
+                                <label for="lphone1" class="col-sm-2 control-label">Mobile No1:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="phone1" name = "mobile_no1" placeholder="Enter Phone:">
+                                </div>
+
+                                <label for="lphone2" class="col-sm-2 control-label">Mobile No2:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="phone2" name = "mobile_no2" placeholder="Enter Phone:">
+                                </div>                                
+                                </div>
+
+                            <div class="form-group">
+                                <label for="lreceipt" class="col-sm-2 control-label">Receipt Number:</label>
+                                <div class="col-sm-4">
+                                <input type="text" class="form-control" id="receipt" name = "registration_id" placeholder="Enter Receipt Number:">
+                                </div>
+                            </div>
+
+                                <div class="form-group">
+                                <div class=" col-sm-10">
+                                <label class="checkbox-inline">
+                                <input type="radio" name="event_flag" id="eventRadios1" value="1" checked>CLASH
+                                </label>
+                                
+                                <label class="checkbox-inline">
+                                <input type="radio" name="event_flag" id="eventRadios2" value="0"> Reverse Coding
+                                </label>
+                                <br><br>    
+                                <button type="submit" class="btn btn-default" onclick="validate1()">Submit</button>
+                                </div>
+                            </div>                            
+                                </form>
+                                <p align = "center" style = "color: #f44336;">{{message}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- jQuery -->
+    <script src= "{% static "js/jquery.js" %}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static "js/jquery.easing.min.js" %}"></script>
+    <script src="{% static "js/scrolling-nav.js" %}"></script>
+
+</body>
+
+
+<script>
+
+    function validate1()  
+    {  
+      var phoneno = /^\d{10}$/; 
+      var textbox=document.getElementById("phone1"); 
+      if(!(textbox.value.match(phoneno)) )   
+            {  
+            alert("Enter valid phone number");  
+            }  
+        } 
+    </script> 
+</html>

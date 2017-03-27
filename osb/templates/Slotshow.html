@@ -1,0 +1,226 @@
+<!--DOCTYPE html>
+<html>
+<body>
+				<pre>ROOM NO. 		date 				time 				total computers 		computers available</pre>
+		<h3>CLASH</h3>
+	{% for i in clash %}
+  		<pre>{{i.room_no}}		{{i.date_slot}}		{{i.time_slot}}		{{i.total_comp}}		{{i.comp_avail}}</pre>		
+  	{% endfor %}
+
+  		<h3>Reverse Coding</h3>
+  	{% for i in rc %}
+  			<pre>{{i.room_no}}		{{i.date_slot}}		{{i.time_slot}}		{{i.total_comp}}		{{i.comp_avail}}</pre>
+  	{% endfor %}
+
+
+
+</body>
+</html-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CREDENZ 16 - SLOT BOOKING</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}" >
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/scrolling-nav.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" class="myfont"  >
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>	
+                <a class="navbar-brand page-scroll" href="#page-top">CREDENZ 16</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right" >
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                                          <li>
+                        <form class="form-horizontal" role="form" action =  "log_out" method = "post">
+                             {% csrf_token %}
+                            <input type = "hidden" name = "link" value = "log_out">
+                             <input type = "submit" value = "LOG OUT">
+
+                       </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <div>
+        <div class="container">
+             
+            <div class="row"><br>
+                
+<center>
+
+  <button id="workbtn" onClick="javascript:slotTimeC();">Clash</button>
+    <button id="workbtn" onClick="javascript:slotTimeR();">RC</button>
+				<table id="ClashTable">
+				  <tr>
+				    <th> Room no</th>
+				   <th>Date</th>
+				   <th>Time</th>
+				   <th>Total Computers</th>
+				   <th>Available Computers</th>
+				 </tr>
+
+				 
+				</table>
+</center>
+
+</div>
+</div>
+    </div>                    
+
+    <!-- jQuery -->
+    <script src="{% static "js/jquery.js" %}" ></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static "js/jquery.easing.min.js" %}"></script>
+    <script src="{% static "js/scrolling-nav.js" %}" ></script>
+    <script src="{% static "js/dynamic.js" %}" ></script>
+    <script src="{% static "js/confirm_modal.js" %}"></script>
+</body> 
+  
+<script type="text/javascript">
+
+   
+    
+    function slotTimeC()
+     {
+       var table = document.getElementById("ClashTable");
+      var tbdata = {{dataclash|safe}}
+     var totalrow = tbdata.length;
+        
+         while(table.rows.length > 1) 
+    {
+        table.deleteRow(1);
+    }
+    
+        var i,initslot=7;
+        for(i=0;i<totalrow;i++)
+        {
+          var r=table.insertRow(i+1);
+          var c1=r.insertCell(0);
+          var c2=r.insertCell(1);
+          var c3=r.insertCell(2);
+          var c4=r.insertCell(3);
+          var c5=r.insertCell(4);
+
+          var tindex=tbdata[i]["fields"].time_slot;
+          var startslot,endslot;
+
+          
+          if(tindex%2==1)
+          {
+         
+              startslot= initslot+ (tindex/2)+0.5+":00 to ";
+              endslot = initslot  + (tindex/2)+0.5+":30";
+          }
+          else
+          {
+            startslot= initslot+ (tindex/2)+":30 to ";
+              endslot = initslot + (tindex/2)+1+":00"; 
+          }
+
+          c1.innerHTML= tbdata[i]["fields"].room_no;
+          c2.innerHTML = tbdata[i]["fields"].date_slot;
+          c3.innerHTML= startslot+endslot;
+          c4.innerHTML= tbdata[i]["fields"].total_comp;
+          c5.innerHTML = tbdata[i]["fields"].comp_avail;    
+        
+
+        }
+}
+function slotTimeR()
+{
+      
+       var table = document.getElementById("ClashTable");
+      var tbdata = {{datarc|safe}}
+     var totalrow = tbdata.length;
+
+         while(table.rows.length > 1) 
+    {
+        table.deleteRow(1);
+    }
+        var i,initslot=7;
+        for(i=0;i<totalrow;i++)
+        {
+
+          var r=table.insertRow(i+1);
+          var c1=r.insertCell(0);
+          var c2=r.insertCell(1);
+          var c3=r.insertCell(2);
+          var c4=r.insertCell(3);
+          var c5=r.insertCell(4);
+
+          var tindex=tbdata[i]["fields"].time_slot;
+          var startslot,endslot;
+
+          if(tindex%2==1)
+          {
+         
+              startslot= initslot+ (tindex/2)+0.5+":00 to ";
+              endslot = initslot  + (tindex/2)+0.5+":30";
+          }
+          else
+          {
+            startslot= initslot+ (tindex/2)+":30 to ";
+              endslot = initslot + (tindex/2)+1+":00"; 
+          }
+
+ 
+          c1.innerHTML= tbdata[i]["fields"].room_no;
+          c2.innerHTML = tbdata[i]["fields"].date_slot;
+          c3.innerHTML= startslot+endslot;
+          c4.innerHTML= tbdata[i]["fields"].total_comp;
+          c5.innerHTML = tbdata[i]["fields"].comp_avail;    
+        
+
+        }
+}
+</script>
+
+</html>

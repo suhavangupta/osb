@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CREDENZ 16 - SLOT BOOKING</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}" >
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/scrolling-nav.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" class="myfont" id="body_uslot">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>   
+                <a class="navbar-brand page-scroll" href="#page-top">CREDENZ 16</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right" >
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                      <li>
+                        <a  class="page-scroll" href="log_out">LOG OUT</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <div id="uslot">
+        <div class="container1">
+             
+            <div class="row">               
+             <br>
+<center>
+<table id="myTable">
+  <tr>
+    <th> Username</th>
+    <th>Registration ID</th>
+    <th>Name1</th>
+    <th>Email1</th>
+    <th>Mobile1</th>
+    <th>Name2</th>
+    <th>Email2</th>
+    <th>Mobile2</th>
+    <th>Event</th>
+  </tr>
+  {% for i in user %}
+  <tr>
+    <td> {{i.user.username}}</td>
+    <td>{{i.registration_id}}</td>
+    <td>{{i.name1}}</td>
+    <td>{{i.email1}}</td>
+    <td>{{i.mobile_no1}}</td>
+    <td>{{i.name2}}</td>
+    <td>{{i.email2}}</td>
+    <td>{{i.mobile_no2}}</td>
+    <td>{{i.event_flag}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</center>
+<br>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="footer1">
+   <center><big>Copyright &copy CREDENZ, PICT IEEE Student Branch, 2016</big></center>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+

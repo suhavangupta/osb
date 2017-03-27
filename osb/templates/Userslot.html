@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>CREDENZ 16 - SLOT BOOKING</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}" >
+
+    <!-- Custom CSS -->
+    <link href="{% static "css/scrolling-nav.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="check();" class="myfont" id="body_uslot">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button> 
+                <div class="navimg navbar-brand"> <img src="{% static "pics/pisb.png" %}" class="navlogo"></div>
+                 
+                <a class="navbar-brand page-scroll" href="#page-top">CREDENZ 16</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right" >
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                      <li>
+                        <a  class="page-scroll" href="log_out">LOG OUT</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <div id="uslot">
+        <div class="container">
+             
+            <div class="row">
+                <label value="SELECT EVENT" id="event" class="headsize">{{event_name}} Slot Booking.</label>
+                
+                <div class="col-lg-12 form-group">
+                        <label class="checkbox-inline">
+                        <input type="radio" name="dateslot" id="slot9"
+                        value="9" onclick="addR1();" > 9 SEPTEMBER
+                        </label>        
+                        <label class="checkbox-inline">
+                        <input type="radio" name="dateslot" id="slot10"
+                        value="10" onclick="addR2();"> 10 SEPTEMBER
+                        </label> 
+                </div>               
+             <br>
+<center>
+<table id="myTable">
+  <tr>
+    <th> Select</td>
+    <th>Time Slot</td>
+    <th>Number of seats</td>
+  </tr>
+</table>
+</center>
+<br>
+    <input type="button" value="SUBMIT" id="submitbtn" ></input></div></div>
+    </div>
+    <div class="row footer1">
+    <div class="col-lg-12">
+    
+   <center><big>Copyright &copy CREDENZ, PICT IEEE Student Branch, 2016</big></center>
+
+    </div>
+</div> 
+</div></div>
+       
+
+
+       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                        &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                        CONFIRM SLOT</h4>
+                    </div>
+
+                        <div class="modal-body">
+                        <div class="form-group">
+                        <form class="form-hortizontal" role="form" method="post" action = "confirm_slot">
+                    
+                    
+                        
+                        <label for="name" class="col-sm-5 control-label"> Selected Date:</label>
+                        <div class="col-sm-7">
+                        
+                        <input type="text" class="form-control" id="modalDate" name = "date_slot1" disabled>
+                        <input type="hidden" name="date_slot" id="date_hidden">
+                        </div>
+                        <br><br>
+                        <label for="name" class="col-sm-5 control-label">Selected Time Slot:</label>
+                        <div class="col-sm-7">
+                        <input type="text" class="form-control" name = "time_slot1" id="modalSlot1" disabled>
+
+                        <input type="hidden" class="form-control" name = "time_slot" id="modalSlot">
+                        </div>
+                        </div>
+
+                    <p><br><br>BOOK YOUR SLOT?</p>               
+                    </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                        data-dismiss="modal">NO
+                        </button>
+                        <button type="submit" class="btn btn-primary" >
+                        YES 
+                        </button>
+                        </div>
+
+                        
+                        </div><!-- /.modal-content -->
+                        { % csrf_token %}
+                        </form>
+                        </div>
+
+   
+
+    <!-- jQuery -->
+    <script src="{% static "js/jquery.js" %}" ></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static "js/jquery.easing.min.js" %}"></script>
+    <script src="{% static "js/scrolling-nav.js" %}" ></script>
+    <script src="{% static "js/dynamic.js" %}" ></script>
+    <script src="{% static "js/confirm_modal.js" %}"></script>
+</body>
+
+<SCRIPT >
+function addR1()
+{
+    //seats=[30,20,22,19,12,2,3,4,5,6,7];
+    seats = {{slot9|safe}};
+    var table = document.getElementById("myTable");
+    var len=seats.length;
+    var i;
+document.getElementById("submitbtn").style.marginTop="10px";
+
+
+    while(table.rows.length > 1) 
+    {
+        table.deleteRow(1);
+    }//Doubt//////////////////////////////////////////////////////////////////
+
+    var time = 8;
+    for(i=1;i<=len;i++)
+    {
+        var radioElement=document.createElement("input");
+        radioElement.setAttribute("type", "radio");
+        radioElement.setAttribute("value", i);
+        radioElement.setAttribute("name", "slotradio");
+
+        var r=table.insertRow(i);
+        var c1=r.insertCell(0);
+        var c2=r.insertCell(1);
+        var c3=r.insertCell(2);
+        c1.appendChild(radioElement);
+        c3.innerHTML=seats[i-1];
+
+if(seats[i-1]==0)
+        {
+            radioElement.disabled=true;
+            c2.style.color="red";
+            c3.style.color="red";
+        }
+        if(i%2!=0)
+        {
+            c2.innerHTML= time+":00 to "+time+":30";
+        }
+        else
+        {
+            c2.innerHTML= time+":30 to "+ (time+1) +":00";
+            time++;
+        }
+    }
+}
+
+function addR2()
+{
+    var btn=document.getElementById("submitbtn");
+    btn.style.marginTop="10px";
+    seats = {{slot10|safe}};
+    var table = document.getElementById("myTable");
+    var len=seats.length;
+    var i;
+   
+    while(table.rows.length > 1) 
+    {
+        table.deleteRow(1);
+    }
+    
+    var time=8;
+    for(i=1;i<=len;i++)
+    {
+        var radioElement=document.createElement("input");
+        radioElement.setAttribute("type", "radio");
+        radioElement.setAttribute("value", i);
+        radioElement.setAttribute("name","slotradio");
+
+        var r=table.insertRow(i);
+        var c1=r.insertCell(0);
+        var c2=r.insertCell(1);
+        var c3=r.insertCell(2);
+        c1.appendChild(radioElement);
+        c2.setAttribute("align","center");
+        c3.innerHTML=seats[i-1];
+if(seats[i-1]==0)
+        {
+            radioElement.disabled=true;
+            c2.style.color="red";
+            c3.style.color="red";
+        }
+        if(i%2!=0)
+        {
+            c2.innerHTML= time+":00 to "+time+":30";
+        }
+        else
+        {
+            c2.innerHTML= time+":30 to "+ (time+1) +":00";
+            time++;
+        }
+    }
+}
+
+function alertFunction()
+{
+    var tempslot = document.getElementsByName('slotradio');
+    var row_value=0;
+    for(var i = 0; i < tempslot.length; i++)
+    {
+        if(tempslot[i].checked)
+        {
+            row_value = i+1;
+        }
+    }
+    if(row_value==0)
+        alert("Please select a Time Slot!");
+    var ns= document.getElementById("myTable").rows[row_value].cells[2].innerHTML;
+    if(ns==0)
+        alert("Slots unavailable!");
+}
+
+    
+function check()
+{
+    var btn1=document.getElementById("slot9");
+    var btn2=document.getElementById("slot10");
+    btn1.checked=false;
+    btn2.checked=false;
+}
+
+
+
+
+</SCRIPT>
+
+</html>

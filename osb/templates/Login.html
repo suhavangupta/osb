@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <title>CREDENZ '16' SLOT BOOKING</title>
+
+    <!-- Bootstrap Core CSS -->
+<link href="{% static "css/font-awesome.css" %}" rel="stylesheet" media="screen" id="font-awesome-css">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}">
+    <!-- Custom CSS -->
+    <link href="{% static "css/scrolling-nav.css" %}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+<script src= "{% static "js/jquery.min.js" %}"></script>
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top" onload="erase();" class="myfont">
+<div class="container">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        
+
+            <div class="navbar-header page-scroll fcolor">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navimg navbar-brand"> <img src="{% static "pics/pisb.png" %}" class="navlogo"></div>
+               
+
+                <a class="navbar-brand page-scroll" href="#page-top">CREDENZ '16</a>
+
+               
+
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul  class="nav navbar-nav navbar-right fcolor">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a class="page-scroll" href="#page-top"></a>
+                    </li>
+
+                    <li >
+                        <a  class="page-scroll" href= "#intro">Instructions</a>
+                    </li>
+    
+                    <li >
+                        <a  class="page-scroll" href=  "#about" >Login</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#services" >Contact Us</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#contact" >Find Us</a>
+                    </li>
+                        <li>
+                        <a href="http://www.credenz.info">Explore Credenz</a>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Section -->
+    <section id="intro" class="intro-section">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-12">
+                    <h1 class="headsize">SLOT BOOKING</h1></div>
+                    
+                <div class="col-lg-6">
+                        <img src= "{% static "pics/credenzlogo.png" %}" class="logo_image">
+                </div>
+                <div class="col-lg-6 " align="left">
+                   <center><h1 align="justified" class="headsize">Instructions</h1></center><br>
+                    <ul>
+                    <li> Slots are available for following events:
+                        <ol><li>CLASH.<LI>REVERSE CODING.</ol></li>
+                    <li>Date of events: 9 September and 10 September.</li>
+                    <li>Slots are available from 8 AM in duration of 30 minutes each.</li>
+                    <li>Slots can be booked only for Round 1 of event.</li>
+                    <li><b>SLOTS CAN BE BOOKED ONLY ONCE.</li>
+                    <li>SERVICE IS PROVIDED ON FIRST COME FIRST BASIS.</li></b>
+                    <li>Receipt number given at time of registration to be used as registration number.</li>
+                    <li>Reistered mobile number to be used for booking te slots.</li>
+                    <li>UserId and Password are sent already via mail.</li>
+                </ul>
+                </div>
+	         </div>
+            </div>
+        
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="row">
+                <h1 class="headsize">Login</h1>
+                
+                <div class="col-lg-2">
+                </div>
+                <div align="left" class="col-lg-7">
+                <center>
+                        <form class="form-horizontal" role="form" action ="login" method="post" ><br>
+                                {% csrf_token %}
+                                <div class="form-group">
+                                <label for="levent" class="col-sm-4 control-label">Select Event:</label>
+                                <div class=" col-sm-6">
+                                <label class="checkbox-inline">
+                                <input type="radio" name="event" id="clash" value="1" onclick="enable()">Clash   
+                                </label>
+                                
+                                <label class="checkbox-inline">
+                                <input type="radio" name="event" id="rc" value="0" onclick="enable()"> Reverse Coding  
+                                </label>
+                                </div>
+                              </div>
+
+                              <fieldset disabled id="fielddiv">
+                                <div class="form-group">
+                                <label for="lreg" class="col-sm-4 control-label">Registration No:</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" name = "registration_no" id="registrationno" placeholder="Enter Registration" required>
+                                </div>
+                                </div>
+
+                                                                <div class="form-group">
+                                <label for="lreg" class="col-sm-4 control-label">Username:</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" name = "username" id="registrationno1" placeholder="Enter Username" required>
+                                </div>
+                                </div>
+
+
+                                 <div class="form-group">
+                                <label for="lphone" class="col-sm-4 control-label">Phone No:</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" name = "mobile_no"id="phone" placeholder="Enter Phone No" required>
+                                </div>
+                                </div>
+
+                                <div class="form-group">
+                                <label for="lpass" class="col-sm-4 control-label">Password:</label>
+                                <div class="col-sm-8">
+                                <input type="password" class="form-control" name = "password" id="password" placeholder="Enter Password" required>
+                                </div>
+                                </div>
+                                
+
+                                
+                                <div class="form-group">
+                                <div class=" col-sm-12">
+                                <button type="submit" class="btn btn-default btn-lg" onclick="validate()" id="signup">Sign in</button><br><br>
+
+                                </div>
+                                </div></fieldset>
+                                </form></center>
+                            <p align = "center" style = "color: #f44336;">{{message}}</p>
+                            <div  align="right">
+                                <button type="submit" class="btn btn-default btn-lg" id="fpawd"data-toggle="modal" data-target="#PasswordModal">Resend Password</button>
+                                <button type="submit" class="btn btn-default btn-lg" id="rmail" data-toggle="modal" data-target="#myModal">Resend Confirmation Mail</button></div>
+                             
+            </div>
+
+                <div class="col-lg-3">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- Contact Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="headsize">Contact Section</h1>
+                    <div class="col-lg-3">
+                        <img src= "{% static "pics/suhavan.jpg" %}" class="contactimg">
+                        <div><p align="center" class="names">Suhavan Gupta<br>+91 7276718234</p></div>
+                    </div>
+                     <div class="col-lg-3">
+                        <img src="{% static "pics/pranav.png" %}" class="contactimg">
+                        <div><p align="center" class="names">Pranav Borole<br>+91 9403663803</p></div>
+                    </div>
+                     <div class="col-lg-3">
+                        <img src= "{% static "pics/disha.png" %}" class="contactimg">
+                        <div><p align="center" class="names">Disha Agrawal<br>+91 8793583226</p></div>
+                    </div>
+                     <div class="col-lg-3">
+                        <img src="{% static "pics/rohit.png" %}" class="contactimg">
+                        <div><p align="center" class="names">Rohit Lokwani<br>+91 9404796323</p></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!-- Services Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="headsize">Find us</h1>
+                    <br>
+                    <div class="col-lg-8">
+                        <img src= "{% static "pics/location.jpg" %}" class="loc_image">
+                    </div>
+                    <div class="col-lg-4">
+                        <br><br><br><br>
+                        To get directions in google maps :<br> <a href= "https://goo.gl/maps/LiSCgwvNgBL2" target="_blank"> Click here</a>
+                    </div>
+                </div>
+            </div></div>
+
+<div class="row footer1">
+    <div class="col-lg-12">
+        
+   <center><big>Copyright &copy CREDENZ, PICT IEEE Student Branch, 2016</big></center>
+    
+    </div>
+</div>
+        
+
+    </section>  
+
+    <!-- Modal -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                        &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                        RESEND CONFORMATION MAIL</h4>
+                    </div>
+
+
+
+
+                    <div class="modal-body">
+                        <form class="form-hortizontal" role="form" action = "confirmationmail" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                        <label for="lmodalrn" class="col-sm-4 control-label">Username : </label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" id="modalrn" name = "username" placeholder="Username">
+                        </div>
+                    </div>
+                
+                    </div>
+                    <br>
+                    <br>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Close
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="modalsubmit">
+                        <!-- Doubt###################################################################################### -->
+                        Submit
+                    </button>
+                        </button>
+                        </form>
+                        </div>
+                        </div>
+                        </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+
+                                 <!-- Modal 2 -->
+                <div class="modal fade" id="PasswordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"
+                        data-dismiss="modal" aria-hidden="true">
+                        &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                        FORGOT PASSWORD</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-hortizontal" role="form" action = "resendmail" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                       <label for="lreg" class="col-sm-4 control-label">Receipt Number :</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" name = "username" id="modalrn2" placeholder="Enter Receipt Number" required>
+                                </div>
+                        
+                          <br>
+                          <br>
+                                <label for="lreg" class="col-sm-4 control-label">Mobile Number:</label>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" name = "mobile_no" id="registrationno2" placeholder="Moibile Number" required>
+                                </div>
+
+
+                              <br><br>   
+                        <label for="levent" class="col-sm-4 control-label">Select Event:</label>
+                                <div class=" col-sm-6">
+                        
+                                <input type="radio" name="event" id="clash" value="1" onclick="enable()"> Clash 
+                                </label>
+                                
+                                <input type="radio" name="event" id="rc" value="0" onclick="enable()"> Reverse Coding  
+                                </label>
+                                </div>
+                                </div>
+                    <br>
+                    <br>
+                                                
+                        <button type="button" class="btn btn-default"
+                        data-dismiss="modal">Close
+                        </button>
+                        <button  type="submit" class="btn btn-primary" id="modalsubmit2">
+                        Submit
+                    </button>
+                        
+                        </form>
+                  </div>
+                  </div>
+                        </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+            
+
+          
+            
+   
+    <!-- jQuery -->
+    <script src= "{% static "js/jquery.js" %}" ></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+
+    <!-- Scrolling Nav JavaScript -->
+    <script src="{% static "js/jquery.easing.min.js" %}" ></script>
+    <script src="{% static "js/dynamic.js" %}"></script>
+    <script src="{% static "js/scrolling-nav.js" %}"></script>
+
+</body>
+<script >
+
+function enable()
+{
+var eradios = document.getElementsByName("event");
+if(eradios[0].checked || eradios[1].checked)
+{
+    document.getElementById("fielddiv").removeAttribute("disabled");
+}
+  else { alert("select event");}  
+}
+
+function erase()
+{
+    document.getElementById("clash").checked=false;
+    document.getElementById("rc").checked=false;
+    document.getElementById("registrationno").value="";
+    document.getElementById("registrationno1").value="";
+    document.getElementById("phone").value="";
+    
+    document.getElementById("password").value="";
+
+}
+
+
+</script>
+
+
+</html>
